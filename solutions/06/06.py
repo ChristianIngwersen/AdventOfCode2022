@@ -13,3 +13,14 @@ for i in range(2, 15):
     search_string += pattern + "|".join([f"\{j}" for j in range(1, i)]) + ")"
 search_string += "(\w)"
 print(re.search(search_string, data).span()[1])
+
+
+# Solution wihout regex
+def find_marker(data, span):
+    for i in range(len(data) - span):
+        if len(set(data[i : i + span])) == span:
+            return i + span
+
+
+print(find_marker(data, 4))
+print(find_marker(data, 14))
